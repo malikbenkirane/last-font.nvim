@@ -1,32 +1,46 @@
-# 🎨 Last Color
-**Last Color** saves the name of the last (successful) colorscheme change to your filesystem and allows you to recall it whenever you desire. As such, you can automatically set your colorscheme between sessions based on what you last used! See the [usage](#usage) section for an example.
+# 📗 Last Font
+**Last Font** saves the name of the last (successful) `vim.opts.guifont` change
+to your filesystem and allows you to recall it whenever you desire. As such,
+you can automatically set your font between sessions based on what you last
+used!
 
 ## Why?
-I'm *extremely* indecisive when choosing my colorscheme. I considered setting up my colors in a `.gitignore`d file, but **telescope**'s colorscheme picker is way too convenient compared to editing a file 🐵
+I'm *extremely* indecisive when choosing my fonts.
 
 ## Installation
 Ye olde plugin manager.
 ```lua
 -- packer
-use({ 'raddari/last-color.nvim' })
+use({ 'malikbenkirane/last-font.nvim' })
 ```
+
+or
+```lua
+-- lazy
+return { 'malikbenkirane/last-font.nvim' }
 
 ## Configuration
 None. It'll call `setup` itself when loaded.
 
 ## Usage
-Dead simple. I use the snippet below in my `init.lua` to automatically use the last theme. There's also an Ex command; `:LastColor`.
+Dead simple. I use the snippet below in my `init.lua` to automatically use the last theme. There's also an Ex command; `:LastFont`.
 ```lua
 -- default theme as a backup, `recall()` can return `nil`.
-local theme = require('last-color').recall() or 'default'
-vim.cmd.colorscheme(theme)
+local theme = require('last-font').recall() or 'default'
+vim.opts.guifont=(font)
 ```
-I personally don't lazy load my plugins, but I'm sure you could modify the snippet to account for that 😀
-
-## Showcase
-Using the lua snippet above:
-
-![last-color](https://user-images.githubusercontent.com/25364469/189385514-563ca684-41c9-42db-a2a6-12921f4f3095.gif)
-
 ## Issues
 Please open an issue for any problems you encounter, or suggestions for improving the code quality. This is my first plugin, so I'm still learning and looking to improve 😁
+
+## 🙏 Acknowledgment
+
+This plugin was heavily inspired by — and adapted from — **[raddari/last-color.nvim](https://github.com/raddari/last-color.nvim)** by **[raddari](https://github.com/raddari)**.
+
+The original design and structure were preserved, with adjustments made to repurpose it for **font selection and management** rather than colorschemes.
+
+Autocommand triggers and certain internal logic were also modified to better fit this use case.
+
+Many thanks to the original author for the excellent foundation.  
+If you find this plugin useful, please consider supporting their work as well.
+
+**Original Project:** [github.com/raddari/last-color.nvim](https://github.com/raddari/last-color.nvim)
