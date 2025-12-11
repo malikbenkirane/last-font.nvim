@@ -1,13 +1,16 @@
 # 📗 Last Font
+
 **Last Font** saves the name of the last (successful) `vim.opts.guifont` change
 to your filesystem and allows you to recall it whenever you desire. As such,
 you can automatically set your font between sessions based on what you last
 used!
 
 ## Why?
+
 I'm *extremely* indecisive when choosing my fonts.
 
 ## Installation
+
 Ye olde plugin manager.
 ```lua
 -- packer
@@ -25,11 +28,31 @@ None. It'll call `setup` itself when loaded.
 ## Usage
 Dead simple. I use the snippet below in my `init.lua` to automatically use the last theme. There's also an Ex command; `:LastFont`.
 ```lua
--- default theme as a backup, `recall()` can return `nil`.
-local theme = require('last-font').recall() or 'default'
+-- default font as a backup, `recall()` can return `nil`,
+-- for example: 'JetBrain Mono:h12' as backup:
+local font = require('last-font').recall() or 'JetBrains Mono:h12'
 vim.opts.guifont=(font)
 ```
+
+Use `:set guifont=*` to list all available fonts.
+And, in case you want to dig deeper, see `:h 'guifont`.
+
+The complete configuration with [Lazy.nvim](https://github.com/folke/lazy.nvim) would be:
+```lua
+return {
+  'malikbenkirane/last-font.nvim',
+  config = function () 
+    -- change 'JetBrains Mono:h14' with your backup font of preference
+    -- you can use `:set guifont=*` to list available fonts
+    local font = require('last-font').recall() or 'JetBrains Mono:h14'
+    vim.opt.guifont = font
+  end
+}
+```
+
+
 ## Issues
+
 Please open an issue for any problems you encounter, or suggestions for improving the code quality. This is my first plugin, so I'm still learning and looking to improve 😁
 
 ## 🙏 Acknowledgment
